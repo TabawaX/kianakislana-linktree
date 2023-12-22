@@ -12,7 +12,7 @@ html, body, ul, li, div, img {
 }
 
 body {
-    background: url("../sakunarenki.jpg");
+    background: url("sakunarenki.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
