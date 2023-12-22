@@ -1,0 +1,128 @@
+html, body, ul, li, div, img, h1, h2, h3, h4, h5, a {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+html, body, ul, li, div, img {
+    padding: 0;
+    margin: 0 auto;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+body {
+    background: url("../img/bg-11.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #FFF;
+}
+
+div.container {
+    max-width: 800px;
+    text-align: center;
+}
+
+div.container.profile {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+div.clear {
+    clear: both;
+}
+
+ul {
+    list-style: none;
+    display: inline-block;
+}
+
+ul > li {
+    text-align: center;
+    vertical-align: middle;
+    float: left;
+    margin: 0.5em;
+    width: 7em;
+}
+
+ul > li > a {
+    background: rgba(0,0,0,0.5);
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: 1em;
+    border: 5px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 20px #ffffff inset;
+    cursor: pointer;
+    display: block;
+}
+
+ul > li > a:hover, ul > li > a:active {
+    background: rgba(255,255,255,0.3);
+}
+
+ul > li > a > img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 0.5em;
+}
+
+div > h1 {
+    line-height: 1px;
+    font-size: 3em;
+	text-shadow:
+		0 0 10px #000,
+		0 0 20px #5271ff,
+		0 0 30px #5271ff,
+		0 0 40px #5271ff,
+		0 0 200px #5271ff,
+		5px 5px 5px #5271ff;
+}
+
+div > h1 > span {
+	animation: pulsate 0.11s ease-in-out infinite alternate;
+}
+
+@keyframes pulsate {
+	0%, 18%, 22%, 25%, 53%, 57%, 100% {
+		text-shadow:
+			0 0 10px #000,
+			0 0 20px #5271ff,
+			0 0 30px #5271ff,
+			0 0 40px #5271ff,
+			0 0 50px #5271ff,
+			0 0 60px #5271ff,
+			0 0 70px #5271ff,
+			0 0 100px #5271ff,
+			0 0 150px #5271ff,
+			0 0 200px #5271ff,
+			5px 5px 5px #5271ff;
+	}
+	20%, 24%, 55% {
+		text-shadow: none;
+	}
+}
+
+img.avatar {
+    border-radius: 50%;
+    border: 10px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 15px #ffffff;
+    background: rgba(0,0,0,0.3);
+    width: 50%;
+    max-width: 275px;
+}
+
+div > h3 {
+    text-shadow: 1px 1px 3px #000000
+}
+
+@media (min-width: 768px) {
+    img.avatar {
+        width: 30%
+    }
+
+    ul > li {
+        width: 10em;
+    }
+}
