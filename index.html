@@ -1,97 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FULLNESS NW | PROFILE</title>
-    <!-- Favicon -->
-    <link rel="icon" href="https://uxyorkis.com/wp-content/uploads/2022/08/cropped-favicon-1.png" type="/renki.jpg" />
-    <!-- Font Awesome icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <!-- Core theme CSS -->
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <!-- Parallax Pixel Background Animation -->
-    <section class="animated-background">
-      <div id="stars1"></div>
-      <div id="stars2"></div>
-      <div id="stars3"></div>
-    </section>
-    <!-- End of Parallax Pixel Background Animation -->
+    <head>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta charset="UTF-8">
+     <title>Fulllness NW</title>
+     <link rel="stylesheet" href="style.css">
+     <link rel="icon" href="renki.jpg" />
+         <style>
+        #particles-js {
+            position: absolute;
+            width: 99%;
+            height: 95%;
+            z-index: -1;
+            /* Membawa partikel ke belakang konten */
+        }
+    </style>
+    </head>
+</body>
+<div class="wave"></div>
+<div class="wave"></div>
+<div class="wave"></div>
+    <div id="particles-js"></div>
+     <img id="userPhoto" title="Yep, that's me." src="pacarku.jpg" alt="User Photo">
+     <a id="userName">Grup Whatsaap & Nomer Developer</a>
+        <div id="links">
+            <a class="link hvr-grow" href="https://chat.whatsapp.com/IcUIS6RRr2a7VUzB77TcoM" target="_blank" rel="noopener">🌹 Kislana Kiana</a>
+            <a class="link hvr-grow" href="https://wa.me//6285261683348" target="_blank" rel="noopener">🍃 Nomer Owner
+                        <a class="link hvr-grow" href="https://whatsapp.com/channel/0029VaGddGe6GcGDLI66cD2l" target="_blank" rel="noopener">🍂 Channel Pengumuman
+   
+     <a href="https://wa.me/c/6285261683348" class="footer">Fullnes Network Always 
+     With You ♥️</a>
+     </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    // Mendapatkan referensi elemen yang akan muncul
+    var objek = document.getElementById('custom-close-popup');
 
-    <a id="profilePicture" href="#popup">
-      <img src="/renki.jpg" alt="Profile Picture">
-    </a>
+    // Fungsi untuk menampilkan objek setelah 10 detik
+    function tampilkanSetelahJeda() {
+        setTimeout(function () {
+            objek.style.display = 'block'; // Menampilkan objek setelah 10 detik
+        }, 7000); // Waktu dalam milidetik (10 detik = 10000 milidetik)
+    }
 
-    <div class="overlay" id="popup">
-      <div class="popup">
-        <div class="popup-photo">
-          <a href="/renki.jpg" target="_blank">
-            <img src="/renki.jpg" alt="Profile Picture">
-          </a>
-        </div>
-        <div class="popup-quote">
-          "Istri Nya Renki Ini ><"
-        </div>
-        <a class="popup-close" onclick="history.back()">&times;</a>
-      </div>
-    </div>
-
-    <div id="userName">
-      Fullness NW
-    </div>
-
- <div id="custom-popup" class="custom-popup">
-        <div class="popup-content2">
-            <span class="custom-close" id="custom-close-popup" style="display: none;">&times;</span>
-            <div class="modal-content rounded-0">
-                <div class="modal-body py-0">
-
-
-                    <div class="d-block main-content">
-                        <img src="https://4relial.github.io/thumbnail/yuuka/1.jpg" alt="Image" class="img-fluid"
-                            style="background-color: #b2fcff; max-height: 200px;">
-                        <div class="content-text p-2">
-
-                            <!-- <h4 class="mb-2 text-center">UNDER MAINTENANCE</h4> -->
-                            <!-- <h4 class="mb-2 text-center">PERHATIAN!</h4> -->
-                            <p class="mb-4">
-                            <p><strong>Sementara semua fitur dikunci dan hanya dapat digunakan oleh member
-                                    Premium</strong></p>
-                            <ul>
-                                <li>Premium: 10K/Bulan, 150K/Permanen</li>
-                                <li>Ketik !premium di nomor bot untuk memesan</li>
-                            </ul>
-                            </p>
-                            <p><strong>Silakan Bergabung Ke Channel Agar Tidak Ketinggalan Informasi: <a
-                                        href="https://channel.katou.my.id">Blessing Software</a></strong>
-                            </p>
-                            <!-- <div class="d-flex align-items-center justify-content-center">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <a href="https://blessify.id" target="_blank"
-                                        class="btn btn-primary px-4">Blessify.id</a>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div id="links">
-      <a class="link" href="https://chat.whatsapp.com/IcUIS6RRr2a7VUzB77TcoM" target="_blank">
-        <i class="🌸">&nbsp;</i>Kiana Kislana
-      <a class="link" href="https://wa.me/6285261683348" target="_blank">
-        <i class="🍃">&nbsp;</i>Nomor Developer
-      </a>
-    </div>
-
-    <div id="hashtag">
-      Always With You<br>Fullness NW<br>
-    </div>
-  </body>
-</html>
-
+    // Panggil fungsi untuk menampilkan objek setelah jeda waktu
+    tampilkanSetelahJeda();
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 120, // Mengubah jumlah partikel
+                "density": {
+                    "enable": true,
+                    "value_area": 1000
+                }
+            },
+            "color": {
+                "value": "#007bbf" // Mengubah warna partikel menjadi biru (#007bff)
+            },
+            "shape": {
+                "type": "circle", // Mengatur bentuk partikel menjadi bintang
+                "stroke": {
+                    "width": 0,
+                    "color": "#ffffff"
+                },
+            },
+            "opacity": {
+                "value": 0.6, // Mengubah tingkat kejelasan partikel
+                "random": true,
+                "anim": {
+                    "enable": true,
+                    "speed": 0.5,
+                    "opacity_min": 0.3,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 5, // Mengubah ukuran partikel
+                "random": true,
+                "anim": {
+                    "enable": true,
+                    "speed": 100,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+        },
+        "interactivity": {
+            "events": {
+                "onhover": {
+                    "enable": false, // Nonaktifkan efek saat mouse hover
+                    "mode": "repulse"
+                }
+            },
+        },
+        "line_linked": {
+            "enable": false // Nonaktifkan jaring-jaring
+        },
+    });
+</script>
+                        </html>
