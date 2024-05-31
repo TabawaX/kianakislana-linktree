@@ -5,7 +5,7 @@ module.exports = (req, res) => {
   const indexFile = path.resolve(__dirname, '../public/index.html');
 
   // Create the "foto" directory if it doesn't exist
-  const fotoDir = path.resolve(__dirname, '../public/foto');
+  const fotoDir = path.resolve(__dirname, '../foto');
   try {
     if (!fs.existsSync(fotoDir)) {
       fs.mkdirSync(fotoDir);
@@ -36,7 +36,7 @@ module.exports = (req, res) => {
       const imageRefs = indexData.match(/<img[^>]+src="([^"]+)"/g); // Regex to find image tags
       if (imageRefs) {
         imageRefs.forEach((imageRef) => {
-          const imagePath = path.resolve(__dirname, '../public/foto', imageRef.match(/src="([^"]+)"/)[1]);
+          const imagePath = path.resolve(__dirname, '../foto', imageRef.match(/src="([^"]+)"/)[1]);
           fs.access(imagePath, fs.constants.R_OK, (accessErr) => {
             if (accessErr) {
               console.error('Error accessing image:', imagePath, accessErr);
