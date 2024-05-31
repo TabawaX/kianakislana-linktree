@@ -36,7 +36,8 @@ module.exports = async (req, res) => {
       for (const imageTag of imageTags) {
         const relativeImagePath = imageTag.match(/src="([^"]+)"/)[1];
         const imagePath = path.resolve(fotoDir, relativeImagePath);
-        console.log('Checking image path:', imagePath);
+        console.log('Relative image path:', relativeImagePath);
+        console.log('Resolved image path:', imagePath);
 
         try {
           await fs.promises.readFile(imagePath);
