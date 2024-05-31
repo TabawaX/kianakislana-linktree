@@ -51,6 +51,7 @@ if (imageTags) {
   }
 }
 
+
 // ...
 
     // Send the modified response with injected styles
