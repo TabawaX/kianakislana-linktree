@@ -6,11 +6,13 @@ const app = express();
 const whitelist = ['192.168.1.0/24', '10.0.0.0/8']; // Allowed IPs in CIDR notation
 const matcher = new CidrMatcher(whitelist);
 
-// Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/foto'));
 
-// Serve static files from the 'foto' directory
-app.use('/foto', express.static(path.join(__dirname, 'foto')));
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
 
 app.use((req, res, next) => {
   const clientIP = req.ip || req.connection.remoteAddress;
@@ -44,4 +46,4 @@ app.get('/api/ip', (req, res) => {
 
 // No app.listen() needed for Vercel serverless functions
 
-module.exports = app; // Ensure app is exported I'm
+module.exports = app; // Ensure app is exported
