@@ -7,7 +7,6 @@ const whitelist = ['192.168.1.0/24', '10.0.0.0/8']; // Allowed IPs in CIDR notat
 const matcher = new CidrMatcher(whitelist);
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/foto'));
 
 
 app.get('/', (req, res) => {
