@@ -1,66 +1,60 @@
 const fs = require('fs');
 const path = require('path');
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   const indexFile = path.resolve(__dirname, '../public/index.html');
+  const fotoDir = path.resolve(__dirname, '../foto');
+  const cssFile = path.resolve(__dirname, '../public/style.css');
 
   // Create the "foto" directory if it doesn't exist
-  const fotoDir = path.resolve(__dirname, '../foto');
   try {
     if (!fs.existsSync(fotoDir)) {
       fs.mkdirSync(fotoDir, { recursive: true });
-      console.log('Created directory: ' + fotoDir);
+      console.log('Created directory:', fotoDir);
     }
   } catch (err) {
     console.error('Error creating directory:', err);
   }
 
-  // Read index.html and inject styles and image references
-  fs.readFile(indexFile, 'utf8', (err, indexData) => {
-    if (err) {
-      console.error('Error reading index.html:', err);
-      res.status(500).send('Error reading index.html');
-      return; // Exit early on error
+  // Read files with async/await
+  try {
+    let indexData = await fs.promises.readFile(indexFile, 'utf8');
+    console.log('Successfully read index.html');
+
+    try {
+      const cssData = await fs.promises.readFile(cssFile, 'utf8');
+      console.log('Successfully read style.css');
+
+      // Inject the CSS content into the index.html
+      indexData = indexData.replace(/<head>/, `<head><style>${cssData}</style>`);
+    } catch (cssErr) {
+      console.error('Error reading style.css:', cssErr);
     }
 
-    // Read style.css asynchronously (recommended)
-    const cssFile = path.resolve(__dirname, '../public/style.css'); // Go up one level
+    // Handle image references
+    const imageRefs = indexData.match(/<img[^>]+src="([^"]+)"/g); // Regex to find image tags
+    if (imageRefs) {
+      for (const imageRef of imageRefs) {
+        const relativeImagePath = imageRef.match(/src="([^"]+)"/)[1];
+        const imagePath = path.resolve(fotoDir, relativeImagePath);
+        console.log('Checking image path:', imagePath);
 
-    // Log the constructed path for debugging
-    console.log('Trying to read style.css from:', cssFile);
-
-    fs.readFile(cssFile, 'utf8', (cssErr, cssData) => {
-      if (cssErr) {
-        console.error('Error reading style.css:', cssErr);
-      } else {
-        // Inject the CSS content into the index.html
-        indexData = indexData.replace(/<head>/, `<head><style>${cssData}</style>`);
+        try {
+          await fs.promises.access(imagePath, fs.constants.R_OK);
+          console.log('Image accessible:', imagePath);
+        } catch (accessErr) {
+          console.error('Error accessing image:', imagePath, accessErr);
+          // Optionally modify indexData to use a placeholder image
+          indexData = indexData.replace(relativeImagePath, '/path/to/placeholder.jpg');
+        }
       }
+    }
 
-      // Handle image references (assuming they use relative paths)
-      const imageRefs = indexData.match(/<img[^>]+src="([^"]+)"/g); // Regex to find image tags
-      if (imageRefs) {
-        imageRefs.forEach((imageRef) => {
-          const relativeImagePath = imageRef.match(/src="([^"]+)"/)[1];
-          const imagePath = path.resolve(__dirname, '../foto', relativeImagePath);
-          console.log('Checking image path:', imagePath);
-
-          fs.access(imagePath, fs.constants.R_OK, (accessErr) => {
-            if (accessErr) {
-              console.error('Error accessing image:', imagePath, accessErr);
-              // Handle missing or inaccessible images (e.g., display a placeholder)
-              // Optionally modify indexData to use a placeholder image
-              indexData = indexData.replace(relativeImagePath, '/path/to/placeholder.jpg');
-            } else {
-              // Image is accessible, no further action needed
-            }
-          });
-        });
-      }
-
-      // Send the modified response with injected styles
-      res.setHeader('Content-Type', 'text/html');
-      res.send(indexData);
-    });
-  });
+    // Send the modified response with injected styles
+    res.setHeader('Content-Type', 'text/html');
+    res.send(indexData);
+  } catch (indexErr) {
+    console.error('Error reading index.html:', indexErr);
+    res.status(500).send('Error reading index.html');
+  }
 };
