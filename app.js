@@ -11,17 +11,27 @@ app.use((req, res, next) => {
   if (matcher.contains(clientIP)) {
     next();
   } else {
-    res.status(401).send('Not authorized');
+    res.status(401).json({ 
+      developer: "@Renkie"
+      ip: clientIP,
+      message: 'Not authorized'
+    });
   }
 });
 
 app.get('/api/ip', (req, res) => {
   try {
     const clientIP = req.ip || req.connection.remoteAddress;
-    res.send(`Your IP is: ${clientIP}`);
+    res.json({
+      ip: clientIP,
+      message: 'Authorized'
+    });
   } catch (error) {
     console.error('Error in /api/ip:', error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).json({
+      ip: null,
+      message: 'Internal Server Error'
+    });
   }
 });
 
