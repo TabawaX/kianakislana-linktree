@@ -23,7 +23,11 @@ module.exports = (req, res) => {
     }
 
     // Read style.css asynchronously (recommended)
-    const cssFile = path.resolve(__dirname, '../public/style.css');
+    const cssFile = path.resolve(__dirname, '../public/style.css'); // Go up one level
+
+    // Log the constructed path for debugging
+    console.log('Trying to read style.css from:', cssFile);
+
     fs.readFile(cssFile, 'utf8', (cssErr, cssData) => {
       if (cssErr) {
         console.error('Error reading style.css:', cssErr);
