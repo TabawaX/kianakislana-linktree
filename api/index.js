@@ -30,25 +30,28 @@ module.exports = async (req, res) => {
     // Inject the CSS content into the index.html
     let modifiedIndexData = indexData.replace(/<head>/, `<head><style>${cssData}</style>`);
 
-    // Handle image references
-    const imageTags = modifiedIndexData.match(/<img[^>]+src="([^"]+)"/g); // Regex to find image tags
-    if (imageTags) {
-      for (const imageTag of imageTags) {
-        const relativeImagePath = imageTag.match(/src="([^"]+)"/)[1];
-        const imagePath = path.join(fotoDir, relativeImagePath)
-        console.log('Relative image path:', relativeImagePath);
-        console.log('Resolved image path:', imagePath);
+    // ...
+// Handle image references
+const imageTags = modifiedIndexData.match(/<img[^>]+src="([^"]+)"/g); // Regex to find image tags
+if (imageTags) {
+  for (const imageTag of imageTags) {
+    const relativeImagePath = imageTag.match(/src="([^"]+)"/)[1];
+    const imagePath = path.join(fotoDir, relativeImagePath.replace(/^\/foto/, '')); // Remove leading /foto
+    console.log('Relative image path:', relativeImagePath);
+    console.log('Resolved image path:', imagePath);
 
-        try {
-          await fs.promises.readFile(imagePath);
-          console.log('Image accessible:', imagePath);
-        } catch (readErr) {
-          console.error('Error accessing image:', imagePath, readErr);
-          // Optionally modify indexData to use a placeholder image
-          modifiedIndexData = modifiedIndexData.replace(relativeImagePath, '/path/to/placeholder.jpg');
-        }
-      }
+    try {
+      await fs.promises.readFile(imagePath);
+      console.log('Image accessible:', imagePath);
+    } catch (readErr) {
+      console.error('Error accessing image:', imagePath, readErr);
+      // Optionally modify indexData to use a placeholder image
+      modifiedIndexData = modifiedIndexData.replace(relativeImagePath, '/path/to/placeholder.jpg');
     }
+  }
+}
+
+// ...
 
     // Send the modified response with injected styles
     res.setHeader('Content-Type', 'text/html');
