@@ -8,7 +8,10 @@
   ],
   "routes": [
     { "src": "/api/ip", "dest": "/app.js" },
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/(.*)", "dest": "/" }
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "headers": { "cache-control": "s-maxage=1000" }
+    }
   ]
 }
