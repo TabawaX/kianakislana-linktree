@@ -8,6 +8,11 @@
   ],
   "routes": [
     { "src": "/api/ip", "dest": "/app.js" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/(.*)", "dest": "/" }
+  ],
+  "static": {
+    "public": "public",
+    "foto": "foto"
+  }
 }
