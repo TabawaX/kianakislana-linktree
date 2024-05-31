@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta charset="UTF-8">
+     <title>Fulllness NW</title>
+     <link rel="stylesheet" href="style.css">
+     <link rel="icon" href="/foto/renki.jpg" />
+         <style>
+        #particles-js {
+            position: absolute;
+            width: 99%;
+            height: 95%;
+            z-index: -1;
+            /* Membawa partikel ke belakang konten */
+        }
+    </style>
+    </head>
+</body>
+<div class="wave"></div>
+<div class="wave"></div>
+<div class="wave"></div>
+    <div id="particles-js"></div>
+     <img id="userPhoto" title="Yep, that's me." src="/foto/pacarku.jpg" alt="User Photo">
+     <a id="userName">Grup Whatsaap & Nomer Developer</a>
+        <div id="links">
+            <a class="link hvr-grow" href="https://chat.whatsapp.com/CwhyfVBfbydANCTohrBtzk" target="_blank" rel="noopener">🌹 Herta</a>
+            <a class="link hvr-grow" href="https://wa.me/6283834281572" target="_blank" rel="noopener">🍃 Nomer Owner
+                        <a class="link hvr-grow" href="https://chat.whatsapp.com/GSkuBCr2IGwEXZ4HwFhzmN" target="_blank" rel="noopener">🍂 Grup Komunitas
+   
+     <a href="https://wa.me/c/6285261683348" class="footer">Fullnes Network Always 
+     With You ♥️</a>
+     </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+    // Mendapatkan referensi elemen yang akan muncul
+    var objek = document.getElementById('custom-close-popup');
+
+    // Fungsi untuk menampilkan objek setelah 10 detik
+    function tampilkanSetelahJeda() {
+        setTimeout(function () {
+            objek.style.display = 'block'; // Menampilkan objek setelah 10 detik
+        }, 7000); // Waktu dalam milidetik (10 detik = 10000 milidetik)
+    }
+
+    // Panggil fungsi untuk menampilkan objek setelah jeda waktu
+    tampilkanSetelahJeda();
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 120, // Mengubah jumlah partikel
+                "density": {
+                    "enable": true,
+                    "value_area": 1000
+                }
+            },
+            "color": {
+                "value": "#007bbf" // Mengubah warna partikel menjadi biru (#007bff)
+            },
+            "shape": {
+                "type": "circle", // Mengatur bentuk partikel menjadi bintang
+                "stroke": {
+                    "width": 0,
+                    "color": "#ffffff"
+                },
+            },
+            "opacity": {
+                "value": 0.6, // Mengubah tingkat kejelasan partikel
+                "random": true,
+                "anim": {
+                    "enable": true,
+                    "speed": 0.5,
+                    "opacity_min": 0.3,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 5, // Mengubah ukuran partikel
+                "random": true,
+                "anim": {
+                    "enable": true,
+                    "speed": 100,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+        },
+        "interactivity": {
+            "events": {
+                "onhover": {
+                    "enable": false, // Nonaktifkan efek saat mouse hover
+                    "mode": "repulse"
+                }
+            },
+        },
+        "line_linked": {
+            "enable": false // Nonaktifkan jaring-jaring
+        },
+    });
+</script>
+                        </html>
