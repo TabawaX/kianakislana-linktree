@@ -7,9 +7,7 @@
     }
   ],
   "routes": [
-    {
-      "src": "/api/ip",
-      "dest": "app.js"
-    }
+    { "src": "/api/ip", "dest": "/app.js" },
+    { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
