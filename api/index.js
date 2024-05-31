@@ -32,24 +32,37 @@ module.exports = async (req, res) => {
 
     // ...
 // Handle image references
-const imageTags = modifiedIndexData.match(/<img[^>]+src="([^"]+)"/g); // Regex to find image tags
+const imageTags = modifiedIndexData.match(/<img[^>]+(src|rel)="([^"]+)"/g); // Regex to find image tags with src or rel
 if (imageTags) {
   for (const imageTag of imageTags) {
-    const relativeImagePath = imageTag.match(/src="([^"]+)"/)[1];
-    const imagePath = path.join(fotoDir, relativeImagePath.replace(/^\/foto/, '')); // Remove leading /foto
-    console.log('Relative image path:', relativeImagePath);
-    console.log('Resolved image path:', imagePath);
+    // Match both src and rel attributes and capture the values
+    const srcMatch = imageTag.match(/src="([^"]+)"/);
+    const relMatch = imageTag.match(/rel="([^"]+)"/);
 
-    try {
-      await fs.promises.readFile(imagePath);
-      console.log('Image accessible:', imagePath);
-    } catch (readErr) {
-      console.error('Error accessing image:', imagePath, readErr);
-      // Optionally modify indexData to use a placeholder image
-      modifiedIndexData = modifiedIndexData.replace(relativeImagePath, '/path/to/placeholder.jpg');
+    let relativeImagePaths = [];
+    if (srcMatch) {
+      relativeImagePaths.push(srcMatch[1]);
+    }
+    if (relMatch) {
+      relativeImagePaths.push(relMatch[1]);
+    }
+
+    for (const relativeImagePath of relativeImagePaths) {
+      const imagePath = path.join(fotoDir, relativeImagePath.replace(/^\/foto/, '')); // Remove leading /foto
+      console.log('Relative image path:', relativeImagePath);
+      console.log('Resolved image path:', imagePath);
+
+      try {
+        await fs.promises.readFile(imagePath);
+        console.log('Image accessible:', imagePath);
+      } catch (readErr) {
+        console.error('Error accessing image:', imagePath, readErr);
+        // **Removed placeholder logic**
+      }
     }
   }
 }
+
 
 
 // ...
