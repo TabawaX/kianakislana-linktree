@@ -8,6 +8,7 @@
   ],
   "routes": [
     { "src": "/api/ip", "dest": "/app.js" },
+    { "src": "/foto/(.*)", "dest": "/foto/$1" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
