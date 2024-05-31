@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Fulllness NW</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="../foto/renki.jpg">
+  <style>
+    #particles-js {
+      position: absolute;
+      width: 99%;
+      height: 95%;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div id="particles-js"></div>
+  <img id="userPhoto" title="Yep, that's me." src="../foto/pacarku.jpg" alt="User Photo">
+  <a id="userName">Grup Whatsaap & Nomer Developer</a>
+  <div id="links">
+    <a class="link hvr-grow" href="https://chat.whatsapp.com/CwhyfVBfbydANCTohrBtzk" target="_blank" rel="noopener">🌹 Herta</a>
+    <a class="link hvr-grow" href="https://wa.me/6283834281572" target="_blank" rel="noopener">🍃 Nomer Owner</a>
+    <a class="link hvr-grow" href="https://chat.whatsapp.com/GSkuBCr2IGwEXZ4HwFhzmN" target="_blank" rel="noopener">🍂 Grup Komunitas</a>
+    <a href="https://wa.me/c/6285261683348" class="footer">Fullnes Network Always With You ♥️</a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    var objek = document.getElementById('custom-close-popup');
+    function tampilkanSetelahJeda() {
+      setTimeout(function () {
+        objek.style.display = 'block';
+      }, 7000);
+    }
+    tampilkanSetelahJeda();
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 120,
+          "density": {
+            "enable": true,
+            "value_area": 1000
+          }
+        },
+        "color": {
+          "value": "#007bbf"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#ffffff"
+          }
+        },
+        "opacity": {
+          "value": 0.6,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 0.5,
+            "opacity_min": 0.3,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 5,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 100,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+      },
+      "interactivity": {
+        "events": {
+          "onhover": {
+            "enable": false,
+            "mode": "repulse"
+          }
+        },
+      },
+      "line_linked": {
+        "enable": false
+      }
+    });
+  </script>
+</body>
+</html>
