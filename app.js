@@ -16,8 +16,15 @@ app.use((req, res, next) => {
 });
 
 app.get('/api/ip', (req, res) => {
-  const clientIP = req.ip || req.connection.remoteAddress;
-  res.send(`Your IP is: ${clientIP}`);
+  try {
+    const clientIP = req.ip || req.connection.remoteAddress;
+    res.send(`Your IP is: ${clientIP}`);
+  } catch (error) {
+    console.error('Error in /api/ip:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
-// Remove app.listen() since Vercel handles this automatically
+// No app.listen() needed for Vercel serverless functions
+
+module.exports = app; // Ensure app is exported
