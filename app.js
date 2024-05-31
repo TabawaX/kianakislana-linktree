@@ -11,8 +11,8 @@ app.use((req, res, next) => {
   if (matcher.contains(clientIP)) {
     next();
   } else {
-    res.status(401).json({ 
-      developer: "@Renkie"
+    res.status(401).json({
+      developer: "@Renkie",
       ip: clientIP,
       message: 'Not authorized'
     });
