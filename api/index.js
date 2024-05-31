@@ -8,7 +8,7 @@ module.exports = (req, res) => {
   const fotoDir = path.resolve(__dirname, '../foto');
   try {
     if (!fs.existsSync(fotoDir)) {
-      fs.mkdirSync(fotoDir);
+      fs.mkdirSync(fotoDir, { recursive: true });
       console.log('Created directory: ' + fotoDir);
     }
   } catch (err) {
@@ -18,6 +18,7 @@ module.exports = (req, res) => {
   // Read index.html and inject styles and image references
   fs.readFile(indexFile, 'utf8', (err, indexData) => {
     if (err) {
+      console.error('Error reading index.html:', err);
       res.status(500).send('Error reading index.html');
       return; // Exit early on error
     }
@@ -40,11 +41,16 @@ module.exports = (req, res) => {
       const imageRefs = indexData.match(/<img[^>]+src="([^"]+)"/g); // Regex to find image tags
       if (imageRefs) {
         imageRefs.forEach((imageRef) => {
-          const imagePath = path.resolve(__dirname, '../foto', imageRef.match(/src="([^"]+)"/)[1]);
+          const relativeImagePath = imageRef.match(/src="([^"]+)"/)[1];
+          const imagePath = path.resolve(__dirname, '../foto', relativeImagePath);
+          console.log('Checking image path:', imagePath);
+
           fs.access(imagePath, fs.constants.R_OK, (accessErr) => {
             if (accessErr) {
               console.error('Error accessing image:', imagePath, accessErr);
               // Handle missing or inaccessible images (e.g., display a placeholder)
+              // Optionally modify indexData to use a placeholder image
+              indexData = indexData.replace(relativeImagePath, '/path/to/placeholder.jpg');
             } else {
               // Image is accessible, no further action needed
             }
