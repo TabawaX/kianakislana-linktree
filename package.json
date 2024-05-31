@@ -6,6 +6,7 @@
     "build": "node app.js"
   },
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "ip": "^2.1.1"
   }
 }
