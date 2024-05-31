@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
     if (imageTags) {
       for (const imageTag of imageTags) {
         const relativeImagePath = imageTag.match(/src="([^"]+)"/)[1];
-        const imagePath = path.resolve(fotoDir, relativeImagePath);
+        const imagePath = path.join(fotoDir, relativeImagePath)
         console.log('Relative image path:', relativeImagePath);
         console.log('Resolved image path:', imagePath);
 
