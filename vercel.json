@@ -9,10 +9,11 @@
   "routes": [
     { "src": "/api/ip", "dest": "/app.js" },
     { "src": "/", "dest": "/index.html", "headers": { "cache-control": "s-maxage=1000" } }, 
+    { "src": "/foto/*", "dest": "/foto/*" }, 
     {
       "src": "/(.*)",
       "dest": "/index.html",
-      "headers": { "cache-control": "s-maxage=1000" }
+      "headers": { "cache-control": "s-maxage=1000" } 
     }
   ]
 }
