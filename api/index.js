@@ -1,27 +1,28 @@
-const fs = require('fs');
-const path = require('path');
+const express = require('express')
+const app = express()
 
-module.exports = async (req, res) => {
-  const indexFile = path.resolve(__dirname, '../public/index.html');
-  const cssFile = path.resolve(__dirname, '../public/style.css');
+app.get('/', async (req, res) => {
+  const indexFile = path.resolve(__dirname, '../public/index.html')
+  const cssFile = path.resolve(__dirname, '../public/style.css')
 
   try {
-    // Read index.html and style.css concurrently
-    const [indexData, cssData] = await Promise.all([
+    const [indexRAW, cssRAW] = await Promise.all([
       fs.promises.readFile(indexFile, 'utf8'),
       fs.promises.readFile(cssFile, 'utf8')
-    ]);
+    ])
 
-    console.log('Successfully read index.html and style.css');
+    console.log('Successfully read index.html and style.css')
 
-    // Inject the CSS content into the index.html
-    let modifiedIndexData = indexData.replace(/<head>/, `<head><style>${cssData}</style>`);
+    let dataDiEdit = indexRAW.replace(/<head>/, `<head><style>${cssRAW}</style>`)
 
-    // Send the modified response with injected styles
-    res.setHeader('Content-Type', 'text/html');
-    res.send(modifiedIndexData);
+    res.setHeader('Content-Type', 'text/html')
+    res.send(dataDiEdit)
   } catch (err) {
-    console.error('Error processing files:', err);
-    res.status(500).send('Error processing files');
+    console.error('Error processing files:', err)
+    res.status(500).send('Error processing files')
   }
-};
+})
+
+module.exports = async (req, res) => {
+  return app(req, res)
+}
